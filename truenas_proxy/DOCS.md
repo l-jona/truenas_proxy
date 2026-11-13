@@ -32,7 +32,12 @@ The TrueNAS UI is built to be served from `/`, while ingress serves it below a
 prefix. When `true` (default), absolute paths (`<base href>`, `/websocket`,
 `/api/current`) in the HTML/JS are rewritten to the ingress prefix. This is
 best-effort and may need adjusting for a given TrueNAS version. If the UI does not
-load through the sidebar, set it to `false` and use the direct port (5000) instead.
+load through the sidebar, check the browser console for failing requests.
+
+## Access
+
+The add-on is reachable only through Home Assistant ingress (the sidebar panel), so
+a Home Assistant login is required. It does not publish any port on the host.
 
 ## Required Dependencies
 

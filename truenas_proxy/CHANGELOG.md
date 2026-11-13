@@ -1,3 +1,7 @@
+### 2.2
+
+- Stop publishing port 5000 on the host; access is via ingress only
+
 ### 2.1
 
 - Handle TrueNAS serving its UI under `/ui/` (redirect and base href rewrite)
