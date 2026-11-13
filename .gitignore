@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+._*
+
+# Editors / local tooling
+.claude/
+.idea/
+.vscode/
+*.swp
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Secrets
+.env
+*.pem
+*.key
+secrets.yaml
