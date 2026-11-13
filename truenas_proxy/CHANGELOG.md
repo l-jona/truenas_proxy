@@ -1,3 +1,8 @@
+### 2.1
+
+- Handle TrueNAS serving its UI under `/ui/` (redirect and base href rewrite)
+- Keep upstream redirects inside the ingress path
+
 ### 2.0
 
 - Repurpose the add-on to proxy the TrueNAS SCALE web UI

@@ -1,5 +1,5 @@
 name: TrueNAS Proxy
-version: 2.0
+version: 2.1
 panel_icon: "mdi:nas"
 panel_title: TrueNAS
 slug: truenas-proxy

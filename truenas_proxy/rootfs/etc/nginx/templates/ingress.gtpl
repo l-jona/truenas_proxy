@@ -8,11 +8,22 @@ server {
     proxy_hide_header X-Frame-Options;
     proxy_hide_header Content-Security-Policy;
 
+    # TrueNAS serves its UI below /ui/. Use a relative redirect so the browser
+    # stays inside the ingress path.
+    location = / {
+        allow   172.30.32.2;
+        deny    all;
+        return  302 ./ui/;
+    }
+
     location / {
         allow   172.30.32.2;
         deny    all;
 
         proxy_pass {{ .server }};
+
+        # Keep redirects from TrueNAS (e.g. http -> https) inside the ingress path.
+        proxy_redirect ~^https?://[^/]+(/.*)$ {{ .entry }}$1;
         proxy_set_header X-Ingress-Path {{ .entry }};
 
         {{ if .proxy_pass_host }}
@@ -37,6 +48,7 @@ server {
           # it works below the Home Assistant ingress prefix.
           sub_filter_once  off;
           sub_filter_types text/html application/javascript text/javascript;
+          sub_filter '<base href="/ui/">' '<base href="{{ .entry }}/ui/">';
           sub_filter '<base href="/">' '<base href="{{ .entry }}/">';
           sub_filter '"/websocket"' '"{{ .entry }}/websocket"';
           sub_filter "'/websocket'" "'{{ .entry }}/websocket'";
